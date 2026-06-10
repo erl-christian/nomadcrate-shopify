@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Shopify App Template - React Router
 
 This is a template for building a [Shopify app](https://shopify.dev/docs/apps/getting-started) using [React Router](https://reactrouter.com/). It was forked from the [Shopify Remix app template](https://github.com/Shopify/shopify-app-template-remix) and converted to React Router.
@@ -235,3 +236,6 @@ Shopify:
 Internationalization:
 
 - [Internationalizing your app](https://shopify.dev/docs/apps/best-practices/internationalization/getting-started)
+=======
+"# nomadcrate-shopify" 
+>>>>>>> 1a541927661fc8c9b2fd8e4cc9022cbea0ca01d6
