@@ -1,24 +1,22 @@
 <section class="travel-categories">
   <div class="container">
     <div class="section-header">
+      <span class="section-subtitle">Curated Routes</span>
       <h2>{{ section.settings.heading }}</h2>
       <p>{{ section.settings.subheading }}</p>
     </div>
 
     <div class="category-grid">
-
       {% for block in section.blocks %}
         <div class="category-card" {{ block.shopify_attributes }}>
-
           <div class="category-image-wrapper">
             {% if block.settings.image != blank %}
               {{
                 block.settings.image
-                | image_url: width: 600
+                | image_url: width: 800
                 | image_tag: class: 'category-image', loading: 'lazy'
               }}
             {% else %}
-              {%- comment -%} Fallback to dynamic placeholder if no user image is chosen {%- endcomment -%}
               {% capture placeholder_index %}{% cycle 'lifestyle-1', 'lifestyle-2', 'collection-1' %}{% endcapture %}
               {{ placeholder_index | placeholder_svg_tag: 'category-image placeholder-svg' }}
             {% endif %}
@@ -30,111 +28,159 @@
 
             {% if block.settings.link != blank %}
               <a href="{{ block.settings.link }}" class="category-btn">
-                Explore
+                <span>Explore Gear</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             {% else %}
               <a href="#" class="category-btn">
-                Explore
+                <span>Explore Gear</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             {% endif %}
           </div>
-
         </div>
       {% endfor %}
-
     </div>
   </div>
 </section>
 
 {% stylesheet %}
 .travel-categories {
-  padding: 6rem 2rem;
-  background: #f8fafc;
+  padding: 7rem 2rem;
+  background: #ffffff;
 }
 
-.container {
+.travel-categories .container {
   max-width: 1300px;
   margin: 0 auto;
 }
 
-.section-header {
+.travel-categories .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
-.section-header h2 {
-  font-size: 3rem;
+.travel-categories .section-subtitle {
+  color: #ff6b00;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.travel-categories .section-header h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
-.section-header p {
+.travel-categories .section-header p {
   color: #64748b;
   font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.category-grid {
+.travel-categories .category-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
-.category-card {
-  background: white;
-  border-radius: 20px;
+.travel-categories .category-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-  transition: .3s ease;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.category-card:hover {
+.travel-categories .category-card:hover {
   transform: translateY(-8px);
+  border-color: #ff6b00;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
 }
 
-.category-image-wrapper {
+.travel-categories .category-image-wrapper {
   width: 100%;
   height: 280px;
   overflow: hidden;
-  background: #e2e8f0;
+  position: relative;
+  background: #f8fafc;
 }
 
-.category-image {
+.travel-categories .category-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.category-content {
-  padding: 1.5rem;
+.travel-categories .category-card:hover .category-image {
+  transform: scale(1.04);
+}
+
+.travel-categories .category-content {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.category-content h3 {
-  margin-bottom: 1rem;
+.travel-categories .category-content h3 {
+  color: #0f172a;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
 }
 
-.category-content p {
+.travel-categories .category-content p {
   color: #64748b;
-  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
   flex-grow: 1;
 }
 
-.category-btn {
-  display: inline-block;
-  background: #0f172a;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
+.travel-categories .category-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.9rem;
   text-decoration: none;
-  text-align: center;
+  transition: color 0.3s ease;
   align-self: flex-start;
 }
 
-@media (max-width: 900px) {
-  .category-grid {
+.travel-categories .category-btn svg {
+  color: #ff6b00;
+  transition: transform 0.3s ease;
+}
+
+.travel-categories .category-card:hover .category-btn {
+  color: #ff6b00;
+}
+
+.travel-categories .category-card:hover .category-btn svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .travel-categories .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .travel-categories .category-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -190,30 +236,7 @@
   ],
   "presets": [
     {
-      "name": "Travel Categories",
-      "blocks": [
-        {
-          "type": "category",
-          "settings": {
-            "title": "Beach Travel",
-            "description": "Sun, sand, and seamless packing."
-          }
-        },
-        {
-          "type": "category",
-          "settings": {
-            "title": "Mountain Travel",
-            "description": "Gear built for every elevation."
-          }
-        },
-        {
-          "type": "category",
-          "settings": {
-            "title": "City Travel",
-            "description": "Travel smart through urban adventures."
-          }
-        }
-      ]
+      "name": "Travel Categories"
     }
   ]
 }

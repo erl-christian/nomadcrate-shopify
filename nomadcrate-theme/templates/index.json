@@ -66,11 +66,16 @@
         "featured_collection": "automated-collection",
         "products_to_show": 4
       }
+    },
+    "pack_builder": {
+      "type": "smart-pack-builder",
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "categories",
+    "pack_builder",
     "featured_products"
   ]
 }
